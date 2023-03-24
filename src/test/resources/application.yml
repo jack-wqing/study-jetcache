@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 1000
+
+jetcache:
+  hiddenPackages:
+    - com.bj58.chr
+  statIntervalMinutes: 1
+  areaInCacheName: false
+  local:
+    default:
+      type: linkedhashmap
+      keyConvertor: fastjson2
+  remote:
+    default:
+      type: redis.springdata
+      keyConvertor: fastjson2
+      broadcastChannel: projectA
+      keyPrefix: projectA
+      valueEncoder: java
+      valueDecoder: java
+      defaultExpireInMillis: 5000

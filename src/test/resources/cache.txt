@@ -1,0 +1,3 @@
+jetcache 需要的配置提供组件，spring环境在: jetcache-autoconfigure 中注入提供
+
+

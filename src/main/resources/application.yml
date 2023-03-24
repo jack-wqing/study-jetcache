@@ -1,0 +1,24 @@
+server:
+  port: 8080
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 1000
+jetcache:
+  hiddenPackages:      # key 进行缓存的时候，取出包的前缀
+    - com.bj58.chr
+  statIntervalMinutes: 5   # 缓存统计，打印周期
+  areaInCacheName: false   # area 是否添加在缓存前面
+  local:
+    default:
+      type: caffeine      # 本地缓存采用的缓存实现
+      keyConvertor: fastjson2  # 遍地缓存，key的序列化格式
+  remote:
+    default:
+      type: redis.springdata   # 远程缓存redis实现，采用的redis客户端实现方式，该配置为spring-data-redis实现
+      keyConvertor: fastjson2  # 远程缓存 key 的序列化方式
+      broadcastChannel: projectA # 当二级缓存的时候，分布式中，redis的发布订阅的平到key， 需要和具体的cached注解一起起作用
+      keyPrefix: projectA    # 远程缓存的 key 的前缀
+      valueEncoder: kryo5     # 远程缓存 value 的序列化方式
+      valueDecoder: kryo5     # 远程缓存 value 的反序列化方式
+      defaultExpireInMillis: 5000  # 远程默认过期时间
