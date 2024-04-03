@@ -1,6 +1,8 @@
 package com.bj58.chr.study.cache.service;
 
 import com.alicp.jetcache.anno.CacheInvalidate;
+import com.alicp.jetcache.anno.CachePenetrationProtect;
+import com.alicp.jetcache.anno.CacheRefresh;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.CacheUpdate;
 import com.alicp.jetcache.anno.Cached;
@@ -14,6 +16,8 @@ public interface UserService {
     User loadUser(Long userId);
 
     @Cached(name = "cachedTest", cacheType = CacheType.BOTH, syncLocal = true, expire = 10, localExpire = 10, timeUnit = TimeUnit.MINUTES)
+    @CacheRefresh(refresh = 1, stopRefreshAfterLastAccess = 30, refreshLockTimeout = 1, timeUnit = TimeUnit.SECONDS)
+    @CachePenetrationProtect(value = true, timeout = 1, timeUnit = TimeUnit.SECONDS)
     User cachedTest(String opType, Long userId);
 
     @CacheUpdate(name = "cachedTest", value = "#result")

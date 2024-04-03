@@ -12,7 +12,7 @@
     <jmxConfigurator/>
 
     <!-- 定义日志文件 输出位置 -->
-    <property name="log.home_dir" value="/Users/a58/test_material/log"/>
+    <property name="log.home_dir" value="/Users/qing/logs/jetCache"/>
     <property name="log.app_name" value="study-jetcache"/>
     <!-- 日志最大的历史 30天 -->
     <property name="log.maxHistory" value="30"/>

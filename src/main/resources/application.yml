@@ -1,9 +1,7 @@
 server:
   port: 8080
-  redis:
-    host: 127.0.0.1
-    port: 6379
-    timeout: 1000
+
+
 jetcache:
   hiddenPackages:      # key 进行缓存的时候，取出包的前缀
     - com.bj58.chr
@@ -22,3 +20,9 @@ jetcache:
       valueEncoder: kryo5     # 远程缓存 value 的序列化方式
       valueDecoder: kryo5     # 远程缓存 value 的反序列化方式
       defaultExpireInMillis: 5000  # 远程默认过期时间
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 1000
+    password:
